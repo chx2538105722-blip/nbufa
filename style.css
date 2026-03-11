@@ -351,3 +351,73 @@ body {
     background: rgba(255, 255, 255, 0.05);
     border-color: rgba(255, 255, 255, 0.1);
 }
+/* 工具箱悬浮触发器 */
+.tools-trigger {
+    position: fixed;
+    left: 20px;
+    bottom: 100px;
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 15px;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    z-index: 999;
+    transition: all 0.3s ease;
+}
+
+.tools-trigger:hover { transform: scale(1.05); background: rgba(255,255,255,0.4); }
+
+/* 侧边面板主体 */
+.tools-panel {
+    position: fixed;
+    left: -400px; /* 默认隐藏在左侧 */
+    top: 0;
+    width: 320px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    box-shadow: 10px 0 50px rgba(0,0,0,0.1);
+    z-index: 2001;
+    transition: left 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tools-panel.active { left: 0; }
+
+/* 内部卡片样式 */
+.tool-card {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.tool-card h4 { margin-bottom: 12px; font-size: 14px; color: #333; }
+
+/* 黄金分割计算器样式 */
+#inputVal {
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.results p { font-size: 12px; color: #666; margin: 5px 0; }
+
+/* 色卡网格 */
+.color-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.color-item {
+    height: 40px; border-radius: 8px; display: flex; align-items: center; 
+    justify-content: center; cursor: pointer; font-size: 10px; color: #fff;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}

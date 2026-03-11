@@ -130,3 +130,29 @@ window.addEventListener('mousemove', (e) => {
         topBar.style.transform = "translateY(-5px)";
     }
 });
+// 切换面板显示状态
+function toggleTools() {
+    document.getElementById('toolsPanel').classList.toggle('active');
+}
+
+// 黄金分割计算逻辑
+function calcGolden() {
+    const val = document.getElementById('inputVal').value;
+    const resLarge = document.getElementById('resLarge');
+    const resSmall = document.getElementById('resSmall');
+    
+    if (val) {
+        resLarge.innerText = (val * 0.618).toFixed(2) + " mm";
+        resSmall.innerText = (val * 0.382).toFixed(2) + " mm";
+    } else {
+        resLarge.innerText = "-";
+        resSmall.innerText = "-";
+    }
+}
+
+// 点击色块自动复制颜色代码
+function copyColor(hex) {
+    navigator.clipboard.writeText(hex);
+    // 这里可以调用你之前的 toast 提示函数
+    alert("已复制色号: " + hex); 
+}

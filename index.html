@@ -70,5 +70,47 @@
     <div class="theme-switch" id="themeToggle">🌓</div>
 
     <script src="script.js"></script>
+    <div class="tools-trigger" onclick="toggleTools()">
+    <span class="icon">🛠️</span>
+    <span class="text">工具箱</span>
+</div>
+
+<div id="toolsPanel" class="tools-panel">
+    <div class="panel-header">
+        <h3>设计辅助工具</h3>
+        <button class="close-btn" onclick="toggleTools()">×</button>
+    </div>
+
+    <div class="panel-content">
+        <div class="tool-card">
+            <h4>📐 黄金分割计算器</h4>
+            <div class="calc-group">
+                <input type="number" id="inputVal" placeholder="输入数值 (mm)" oninput="calcGolden()">
+                <div class="results">
+                    <p>较长部分 (0.618): <span id="resLarge">-</span></p>
+                    <p>较短部分 (0.382): <span id="resSmall">-</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tool-card">
+            <h4>🎨 常用 CMF 色号</h4>
+            <div class="color-grid">
+                <div class="color-item" onclick="copyColor('#F2F2F2')" style="background:#F2F2F2"><span>冷白</span></div>
+                <div class="color-item" onclick="copyColor('#2C2C2C')" style="background:#2C2C2C"><span>炭黑</span></div>
+                <div class="color-item" onclick="copyColor('#E6B422')" style="background:#E6B422"><span>哑金</span></div>
+                <div class="color-item" onclick="copyColor('#007AFF')" style="background:#007AFF"><span>交互蓝</span></div>
+            </div>
+        </div>
+
+        <div class="tool-card">
+            <h4>📚 快捷参考</h4>
+            <div class="link-stack">
+                <a href="https://www.material.io/" target="_blank">Material Design</a>
+                <a href="https://developer.apple.com/design/human-interface-guidelines/" target="_blank">iOS HIG</a>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
