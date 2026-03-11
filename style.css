@@ -264,4 +264,90 @@ body {
     border-radius: 50%;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     cursor: pointer;
+}/* --- 页面最底部沉浸式入口 --- */
+
+/* 1. 底部容器：强制换行并全局居中 */
+.mini-portal-footer {
+    width: 100%;
+    margin-top: 80px;      /* 与上方导航卡片保持充足呼吸感 */
+    padding: 30px 0 50px;  /* 底部留白，防止贴边 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* 水平居中 */
+    justify-content: center;
+    clear: both;           /* 清除可能的浮动干扰 */
+    position: relative;
+    z-index: 10;           /* 确保在背景层之上 */
+}
+
+/* 2. 分割线：精致的工业感细节 */
+.footer-divider {
+    width: 60px;
+    height: 2px;
+    background: rgba(128, 128, 128, 0.2);
+    border-radius: 2px;
+    margin-bottom: 25px;
+}
+
+/* 3. 胶囊链接：小巧精致的入口 */
+.mini-visual-link {
+    display: inline-flex;  /* 保持内部元素水平排列 */
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    background: rgba(255, 255, 255, 0.08); /* 极淡的半透明 */
+    backdrop-filter: blur(12px);           /* 磨砂玻璃效果 */
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 40px;                   /* 完美圆角胶囊 */
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* 4. 悬停动效：亮色模式/深色模式通用 */
+.mini-visual-link:hover {
+    background: rgba(0, 122, 255, 0.12);
+    border-color: rgba(0, 122, 255, 0.4);
+    transform: translateY(-3px);           /* 轻微浮起 */
+    box-shadow: 0 8px 25px rgba(0, 122, 255, 0.15);
+}
+
+/* 5. 内部文字与图标 */
+.sparkle-icon {
+    font-size: 14px;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+
+.link-text {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-main);              /* 使用你定义的主文字颜色变量 */
+    letter-spacing: 0.5px;
+}
+
+.arrow-icon {
+    font-size: 10px;
+    color: #007aff;                       /* 经典的交互蓝色 */
+    transition: transform 0.3s ease;
+}
+
+.mini-visual-link:hover .arrow-icon {
+    transform: translateX(3px);           /* 箭头指向动效 */
+}
+
+/* 6. 版权信息 */
+.copyright {
+    margin-top: 15px;
+    font-size: 10px;
+    color: var(--text-sub);               /* 使用你定义的辅助文字颜色变量 */
+    opacity: 0.4;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+/* --- 深色模式适配（如果你的变量名不同请微调） --- */
+[data-theme="dark"] .mini-visual-link {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
 }
