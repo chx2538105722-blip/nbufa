@@ -155,4 +155,54 @@ function copyColor(hex) {
     navigator.clipboard.writeText(hex);
     // 这里可以调用你之前的 toast 提示函数
     alert("已复制色号: " + hex); 
-}
+}window.addEventListener('load', () => {
+    const loader = document.getElementById('loader-layer');
+    
+    // 延迟一小会儿（例如 1.5 秒），让用户看清动画，增加仪式感
+    setTimeout(() => {
+        loader.classList.add('loader-hidden');
+        
+        // 动画结束后可以触发一个“主页进入”的微动效
+        gsap.from('.container', {
+            y: 30,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out"
+        });
+    }, 1500);
+});window.addEventListener('load', () => {
+    const loader = document.getElementById('loader-layer');
+    
+    // 粒子动画总时长约为 3.5s (gatherAndFade) + 0.5s (延迟) = 4s
+    // 我们在 4s 后揭开网页，确保仪式感完整
+    setTimeout(() => {
+        // 1. 隐藏加载层
+        loader.classList.add('loader-hidden');
+        
+        // 2. 触发主页内容的“量子纠缠”式进入动效 (需要引入 GSAP)
+        if (typeof gsap !== 'undefined') {
+            gsap.from('.container', {
+                y: 40,
+                opacity: 0,
+                duration: 1.2,
+                ease: "power4.out",
+                stagger: 0.1 // 让卡片依次浮现
+            });
+        }
+    }, 4000); // 4000 毫秒 = 4 秒
+});window.addEventListener('load', () => {
+    const loader = document.getElementById('loader-layer');
+    
+    // 延迟一小会儿（例如 1.5 秒），让用户看清动画，增加仪式感
+    setTimeout(() => {
+        loader.classList.add('loader-hidden');
+        
+        // 动画结束后可以触发一个“主页进入”的微动效
+        gsap.from('.container', {
+            y: 30,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out"
+        });
+    }, 1500);
+});
