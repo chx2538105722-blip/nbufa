@@ -119,5 +119,26 @@
         </div>
     </div>
 </div>
+<div id="timetableModule" class="timetable-module">
+    <div class="timetable-preview" onclick="toggleTimetable()">
+        <div class="preview-info">
+            <span class="live-dot"></span>
+            <span class="day-label" id="today-name">周三</span>
+            <div id="today-course-list" class="mini-list">
+                </div>
+        </div>
+        <div class="expand-icon">展开全周 ▾</div>
+    </div>
+
+    <div class="full-view">
+        <div class="week-grid">
+            <div class="grid-column" id="col-1"><div class="grid-header">周一</div></div>
+            <div class="grid-column" id="col-2"><div class="grid-header">周二</div></div>
+            <div class="grid-column" id="col-3"><div class="grid-header">周三</div></div>
+            <div class="grid-column" id="col-4"><div class="grid-header">周四</div></div>
+            <div class="grid-column" id="col-5"><div class="grid-header">周五</div></div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

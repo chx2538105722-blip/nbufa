@@ -206,3 +206,98 @@ function copyColor(hex) {
         });
     }, 1500);
 });
+// 1. 严格对照截图录入的数据（确认周四无课，周五有课）
+const courseData = {
+    1: [ // 周一
+        {t: "1-2节", n: "工业设计调研", l: "艺术楼-404"},
+        {t: "3-4节", n: "工业设计调研", l: "艺术楼-404"},
+        {t: "6-7节", n: "产品设计程序与方法", l: "南教1-315"},
+        {t: "8-9节", n: "产品设计程序与方法", l: "南教1-315"},
+        {t: "11-12节", n: "生成式AI应用", l: "南教1-303"}
+    ],
+    2: [ // 周二
+        {t: "1-2节", n: "计算机辅助设计III", l: "实验楼A-305"},
+        {t: "3-4节", n: "计算机辅助设计III", l: "实验楼A-305"}
+    ],
+    3: [ // 周三
+        {t: "1-2节", n: "先进制造与3D打印", l: "北教8-307"},
+        {t: "6-7节", n: "产品形态设计", l: "艺术楼-404"},
+        {t: "8-9节", n: "产品形态设计", l: "艺术楼-404"}
+    ],
+    4: [], // 周四确认无课
+    5: [ // 周五
+        {t: "3-4节", n: "羽毛球B", l: "体育馆-136"},
+        {t: "6-7节", n: "马克思主义基本原理", l: "北教8-506"},
+        {t: "8-9节", n: "思政/形策/马基", l: "北教8-506"}
+    ]
+};
+
+function initTimetable() {
+    const now = new Date();
+    let day = now.getDay(); // 0是周日
+    
+    const dayNames = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
+    document.getElementById('today-name').innerText = dayNames[day];
+
+    // --- 渲染预览条（未点击状态，显示地点） ---
+    const previewContainer = document.getElementById('today-course-list');
+    previewContainer.innerHTML = "";
+
+    const todayCourses = courseData[day] || [];
+    if (day >= 1 && day <= 5 && todayCourses.length > 0) {
+        todayCourses.forEach(c => {
+            const span = document.createElement('span');
+            span.className = 'mini-tag';
+            span.innerText = `${c.t} ${c.n} @${c.l}`; // 显示课程+地点
+            previewContainer.appendChild(span);
+        });
+    } else {
+        const hint = (day === 4) ? "今日无课 (自主设计)" : (day === 0 || day === 6 ? "周末愉快 ☕" : "今日无排课");
+        previewContainer.innerHTML = `<span class="mini-tag" style="background:rgba(0,0,0,0.05); color:#888;">${hint}</span>`;
+    }
+
+    // --- 渲染全周网格 & 高亮今日 ---
+    for (let i = 1; i <= 5; i++) {
+        const col = document.getElementById(`col-${i}`);
+        if (!col) continue;
+
+        // 移除旧的高亮并重置内容
+        col.classList.remove('today-highlight');
+        const header = col.querySelector('.grid-header');
+        col.innerHTML = "";
+        col.appendChild(header);
+
+        // 如果 i 等于当前星期几，添加高亮类
+        if (i === day) {
+            col.classList.add('today-highlight');
+        }
+
+        const courses = courseData[i] || [];
+        if (courses.length > 0) {
+            courses.forEach(c => {
+                const card = document.createElement('div');
+                card.className = 'course-card';
+                card.innerHTML = `<span>${c.t}</span><strong>${c.n}</strong><p>${c.l}</p>`;
+                col.appendChild(card);
+            });
+        } else {
+            const noCourse = document.createElement('div');
+            noCourse.className = 'no-course';
+            noCourse.style.cssText = "color:#bbb; font-size:12px; text-align:center; margin:30px 0; font-style:italic;";
+            noCourse.innerText = "无课";
+            col.appendChild(noCourse);
+        }
+    }
+}
+
+// 统一的切换函数
+function toggleTimetable() {
+    const module = document.getElementById('timetableModule');
+    module.classList.toggle('active');
+}
+
+// 确保页面加载完后执行
+window.addEventListener('DOMContentLoaded', () => {
+    initTimetable();
+    // 之前你的工具箱逻辑等也可以放在这里
+});
